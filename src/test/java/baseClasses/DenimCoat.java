@@ -10,6 +10,7 @@ public class DenimCoat {
 
     By orangeSquare= By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[3]/form/div[5]/div[2]/ul/li[2]/img");
 
+    By yellowSquare=By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[3]/form/div[5]/div[2]/ul/li[5]/img");
 
     By textColor=By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[3]/form/div[5]/div[2]/div[1]/div");
 
@@ -22,6 +23,14 @@ public class DenimCoat {
     public void clickOrangeSquare(){
         try {
             driver.findElement(orangeSquare).click();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+    public void clickYellowSquare(){
+        try {
+            driver.findElement(yellowSquare).click();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
