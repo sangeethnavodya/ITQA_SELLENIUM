@@ -10,9 +10,10 @@ public class DenimCoat {
 
     By orangeSquare= By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[3]/form/div[5]/div[2]/ul/li[2]/img");
 
-    By denimCoatCard= By.xpath("//*[@id=\"ec_product_image_effect_4381370\"]/a");
 
     By textColor=By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[3]/form/div[5]/div[2]/div[1]/div");
+
+    By DenimWebSite=By.xpath("//*[@id=\"manufacturer-bug\"]/a");
 
 
     public DenimCoat(WebDriver driver){
@@ -25,6 +26,9 @@ public class DenimCoat {
             System.out.println(e.getMessage());
         }
 
+    }
+    public void clickWebDenim(){
+        driver.findElement(DenimWebSite).click();
     }
     public String getTextValue(){
         return  driver.findElement(textColor).getText();

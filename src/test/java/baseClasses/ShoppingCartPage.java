@@ -22,6 +22,7 @@ public class ShoppingCartPage {
 
     By clickUpdateButton=By.xpath("//*[@id=\"ec_cartitem_update_1361917\"]");
 
+    By hostItem=By.xpath("//*[@id=\"ec_image_product_widget_anchor-bracelet_1_0\"]/img");
 
 
     public ShoppingCartPage(WebDriver driver){
@@ -43,6 +44,10 @@ public class ShoppingCartPage {
     public String getGrandTotal(){
         WebElement cartGrandTotal=driver.findElement(grandTotal);
         return cartGrandTotal.getText();
+    }
+
+    public void clickHotItem(){
+        driver.findElement(hostItem).click();
     }
 
 
