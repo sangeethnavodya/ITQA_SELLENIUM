@@ -1,32 +1,28 @@
 package itqa.selenium;
 
-import baseClasses.DenimCoat;
+import baseClasses.FlamingoTShirt;
 import baseClasses.HomePage;
-import baseClasses.ShoppingCartPage;
-import com.cybozu.labs.langdetect.Detector;
-import com.cybozu.labs.langdetect.DetectorFactory;
-import com.cybozu.labs.langdetect.LangDetectException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FifthTestCase {
+public class SecondTestCase {
     @Test
-    public void FifthTest(){
+    public void secondTest(){
         WebDriver driver = new ChromeDriver();
         try {
             driver.get("https://academybugs.com/find-bugs/");
             driver.manage().window().maximize();
             Thread.sleep(1000);
             HomePage homePage=new HomePage(driver);
-            DenimCoat denimCoat=new DenimCoat(driver);
-            homePage.clickDenimCoatCard();
-            Thread.sleep(3000);
-            String text = driver.findElement(By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[1]/h1")).getText();
-
+            FlamingoTShirt flamingoTShirt=new FlamingoTShirt(driver);
+            String priceInHomePage=homePage.flamingoTShirtPriceInHome();
+            Thread.sleep(1000);
+            homePage.clickFlamingoCard();
+            Thread.sleep(1000);
+            String priceInFlamingoPage=flamingoTShirt.flamingoTShirtPriceInFlamingoTShirtPage();
+            Assert.assertEquals(priceInHomePage,priceInFlamingoPage);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {

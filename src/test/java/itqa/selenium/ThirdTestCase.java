@@ -2,20 +2,14 @@ package itqa.selenium;
 
 import baseClasses.DenimCoat;
 import baseClasses.HomePage;
-import baseClasses.ShoppingCartPage;
-import com.cybozu.labs.langdetect.Detector;
-import com.cybozu.labs.langdetect.DetectorFactory;
-import com.cybozu.labs.langdetect.LangDetectException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FifthTestCase {
+public class ThirdTestCase {
     @Test
-    public void FifthTest(){
+    public void ThirdTest(){
         WebDriver driver = new ChromeDriver();
         try {
             driver.get("https://academybugs.com/find-bugs/");
@@ -25,8 +19,10 @@ public class FifthTestCase {
             DenimCoat denimCoat=new DenimCoat(driver);
             homePage.clickDenimCoatCard();
             Thread.sleep(3000);
-            String text = driver.findElement(By.xpath("//*[@id=\"post-6192\"]/div/section/div[1]/div[1]/h1")).getText();
-
+            denimCoat.clickOrangeSquare();
+            String actualValue=denimCoat.getTextValue();
+            String expectedValues="Orange";
+            Assert.assertEquals(actualValue,expectedValues);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
