@@ -1,4 +1,4 @@
-package shoppingCart;
+package baseClasses;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

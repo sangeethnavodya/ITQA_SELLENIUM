@@ -1,14 +1,13 @@
 package itqa.selenium;
 
-import org.openqa.selenium.By;
+import baseClasses.FlamingoTShirt;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import shoppingCart.ShoppingCart;
+import baseClasses.ShoppingCart;
 
-public class FirstTest {
+public class TestCases {
 
     @Test
     public void  firstTest() {
@@ -34,4 +33,24 @@ public class FirstTest {
         }
     }
 
+    @Test
+    public void secondTest(){
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.get("https://academybugs.com/find-bugs/");
+            driver.manage().window().maximize();
+            Thread.sleep(1000);
+            FlamingoTShirt flamingoTShirt=new FlamingoTShirt(driver);
+            String priceInHomePage=flamingoTShirt.flamingoTShirtPriceInHome();
+            Thread.sleep(1000);
+            flamingoTShirt.clickFlamingoCard();
+            Thread.sleep(1000);
+            String priceInFlamingoPage=flamingoTShirt.flamingoTShirtPriceInFlamingoTShirtPage();
+            Assert.assertEquals(priceInHomePage,priceInFlamingoPage);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            driver.quit();
+        }
+    }
 }
