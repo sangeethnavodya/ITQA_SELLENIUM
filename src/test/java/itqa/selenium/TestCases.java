@@ -2,11 +2,12 @@ package itqa.selenium;
 
 import baseClasses.DenimCoat;
 import baseClasses.FlamingoTShirt;
+import baseClasses.HomePage;
+import baseClasses.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import baseClasses.ShoppingCart;
 
 public class TestCases {
 
@@ -16,16 +17,17 @@ public class TestCases {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get("https://academybugs.com/find-bugs/");
-            ShoppingCart shoppingCart=new ShoppingCart(driver);
-            shoppingCart.clickAddToCart();
+            HomePage homePage=new HomePage(driver);
+            homePage.clickAddToCart();
             Thread.sleep(4000);
-            shoppingCart.clickCheckOut();
+            homePage.clickCheckOut();
             Thread.sleep(3000);
-            float floatValueCartSubTotal =   shoppingCart.getCartSubTotal();
-            float floatValueShipping= shoppingCart.getShippingTotal();
+            ShoppingCartPage shoppingCartPage=new ShoppingCartPage(driver);
+            float floatValueCartSubTotal =   shoppingCartPage.getCartSubTotal();
+            float floatValueShipping= shoppingCartPage.getShippingTotal();
             float subTotal=floatValueShipping+floatValueCartSubTotal;
             String expectedTotal = String.format("$%.2f", subTotal);
-            String actualTotal=shoppingCart.getGrandTotal();
+            String actualTotal=shoppingCartPage.getGrandTotal();
             Assert.assertEquals(actualTotal,expectedTotal);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -41,10 +43,11 @@ public class TestCases {
             driver.get("https://academybugs.com/find-bugs/");
             driver.manage().window().maximize();
             Thread.sleep(1000);
+            HomePage homePage=new HomePage(driver);
             FlamingoTShirt flamingoTShirt=new FlamingoTShirt(driver);
-            String priceInHomePage=flamingoTShirt.flamingoTShirtPriceInHome();
+            String priceInHomePage=homePage.flamingoTShirtPriceInHome();
             Thread.sleep(1000);
-            flamingoTShirt.clickFlamingoCard();
+            homePage.clickFlamingoCard();
             Thread.sleep(1000);
             String priceInFlamingoPage=flamingoTShirt.flamingoTShirtPriceInFlamingoTShirtPage();
             Assert.assertEquals(priceInHomePage,priceInFlamingoPage);
@@ -62,8 +65,9 @@ public class TestCases {
             driver.get("https://academybugs.com/find-bugs/");
             driver.manage().window().maximize();
             Thread.sleep(1000);
+            HomePage homePage=new HomePage(driver);
             DenimCoat denimCoat=new DenimCoat(driver);
-            denimCoat.clickDenimCoatCard();
+            homePage.clickDenimCoatCard();
             Thread.sleep(3000);
             denimCoat.clickOrangeSquare();
             String actualValue=denimCoat.getTextValue();

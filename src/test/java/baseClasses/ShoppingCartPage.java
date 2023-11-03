@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ShoppingCart {
+import java.util.List;
+
+public class ShoppingCartPage {
     WebDriver driver;
 
     //stores the locators
 
-   By addToCart= By.xpath("//*[@id=\"ec_add_to_cart_5\"]");
-   By checkOut = By.xpath("//*[@id=\"ec_added_to_cart_5\"]");
 
    By cartSubTotal=By.xpath("//*[@id=\"ec_cart_subtotal\"]");
 
@@ -18,15 +18,14 @@ public class ShoppingCart {
 
     By grandTotal=By.xpath("//*[@id=\"ec_cart_total\"]");
 
+    By plusButton=By.xpath("//*[@id=\"ec_cartitem_row_1361917\"]/td[5]/table/tbody/tr[1]/td[3]/input");
 
-   public ShoppingCart(WebDriver driver){
-       this.driver=driver;
-   }
-   public void clickAddToCart(){
-       driver.findElement(addToCart).click();
-   }
-    public void clickCheckOut(){
-        driver.findElement(checkOut).click();
+    By clickUpdateButton=By.xpath("//*[@id=\"ec_cartitem_update_1361917\"]");
+
+
+
+    public ShoppingCartPage(WebDriver driver){
+        this.driver=driver;
     }
 
     public float getCartSubTotal(){
@@ -44,5 +43,17 @@ public class ShoppingCart {
     public String getGrandTotal(){
         WebElement cartGrandTotal=driver.findElement(grandTotal);
         return cartGrandTotal.getText();
+    }
+
+
+    public void clickUpdateButton(){
+        WebElement table =driver.findElement(clickUpdateButton);
+        WebElement firstRow = table.findElement(By.tagName("tr"));
+
+        List<WebElement> columns = firstRow.findElements(By.tagName("td"));
+        for (WebElement column : columns) {
+            column.click();
+        }
+
     }
 }

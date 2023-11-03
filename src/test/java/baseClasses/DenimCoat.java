@@ -26,10 +26,6 @@ public class DenimCoat {
         }
 
     }
-    public void clickDenimCoatCard(){
-        driver.findElement(denimCoatCard).click();
-    }
-
     public String getTextValue(){
         return  driver.findElement(textColor).getText();
     }
