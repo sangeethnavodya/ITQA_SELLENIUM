@@ -1,5 +1,6 @@
 package itqa.selenium;
 
+import baseClasses.DenimCoat;
 import baseClasses.FlamingoTShirt;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,7 +26,7 @@ public class TestCases {
             float subTotal=floatValueShipping+floatValueCartSubTotal;
             String expectedTotal = String.format("$%.2f", subTotal);
             String actualTotal=shoppingCart.getGrandTotal();
-            Assert.assertEquals(expectedTotal,actualTotal);
+            Assert.assertEquals(actualTotal,expectedTotal);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
@@ -53,4 +54,26 @@ public class TestCases {
             driver.quit();
         }
     }
+
+    @Test
+    public void ThirdTest(){
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.get("https://academybugs.com/find-bugs/");
+            driver.manage().window().maximize();
+            Thread.sleep(1000);
+            DenimCoat denimCoat=new DenimCoat(driver);
+            denimCoat.clickDenimCoatCard();
+            Thread.sleep(3000);
+            denimCoat.clickOrangeSquare();
+            String actualValue=denimCoat.getTextValue();
+            String expectedValues="Orange";
+            Assert.assertEquals(actualValue,expectedValues);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            driver.quit();
+        }
+    }
+
 }
