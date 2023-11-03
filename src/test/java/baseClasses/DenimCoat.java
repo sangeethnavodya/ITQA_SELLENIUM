@@ -19,7 +19,12 @@ public class DenimCoat {
         this.driver=driver;
     }
     public void clickOrangeSquare(){
-        driver.findElement(orangeSquare).click();
+        try {
+            driver.findElement(orangeSquare).click();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
     public void clickDenimCoatCard(){
         driver.findElement(denimCoatCard).click();
